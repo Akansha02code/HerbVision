@@ -1,0 +1,281 @@
+{
+  "Tulsi": {
+    "scientific_name": "Ocimum tenuiflorum",
+    "common_name": "Holy Basil",
+    "medicinal_uses": [
+      "Boosts immunity",
+      "Supports respiratory health",
+      "Reduces stress and inflammation",
+      "Aids digestion"
+    ],
+    "ideal_conditions": {
+      "climate": ["tropical", "subtropical"],
+      "soil": ["loamy", "well-drained"],
+      "sunlight": ["full", "partial"],
+      "environment": ["indoor", "outdoor"]
+    },
+    "ideal_ranges": {
+      "temperature": [20, 35],
+      "humidity": [40, 70]
+    },
+    "base_care": {
+      "water": "Moderate",
+      "sunlight": "Full Sun",
+      "soil": "Well-drained"
+    },
+    "rules": {
+      "low_sunlight": "Move plant to a sunnier location; Tulsi needs at least 6 hours of light.",
+      "wrong_soil": "Use loamy or well-drained soil for better root health.",
+      "cold_climate": "Keep indoors or protect from frost during winter months.",
+      "high_heat": "Increase watering frequency and provide some afternoon shade."
+    }
+  },
+  "Neem": {
+    "scientific_name": "Azadirachta indica",
+    "common_name": "Neem",
+    "medicinal_uses": [
+      "Antibacterial and antifungal properties",
+      "Supports skin health",
+      "Helps manage blood sugar",
+      "Natural pest repellent"
+    ],
+    "ideal_conditions": {
+      "climate": ["tropical", "subtropical", "arid"],
+      "soil": ["sandy", "loamy", "well-drained"],
+      "sunlight": ["full"],
+      "environment": ["outdoor"]
+    },
+    "ideal_ranges": {
+      "temperature": [25, 45],
+      "humidity": [30, 60]
+    },
+    "base_care": {
+      "water": "Moderate; drought-tolerant once established",
+      "sunlight": "Full Sun",
+      "soil": "Sandy loam"
+    },
+    "rules": {
+      "low_sunlight": "Neem thrives in full sun; growth will stunt in shade.",
+      "wrong_soil": "Ensure excellent drainage; Neem cannot tolerate waterlogged soil.",
+      "cold_climate": "Neem is sensitive to frost; keep in a warm, sheltered spot.",
+      "indoor": "Neem is extremely difficult to grow indoors; it needs full tropical sun and space to grow."
+    }
+  },
+  "Aloevera": {
+    "scientific_name": "Aloe barbadensis miller",
+    "common_name": "Aloe Vera",
+    "medicinal_uses": [
+      "Soothes burns and cuts",
+      "Hydrates skin",
+      "Helps digestion",
+      "Anti-inflammatory"
+    ],
+    "ideal_conditions": {
+      "climate": ["arid", "tropical", "subtropical"],
+      "soil": ["sandy", "cactus mix", "well-drained"],
+      "sunlight": ["full", "partial"],
+      "environment": ["indoor", "outdoor"]
+    },
+    "ideal_ranges": {
+      "temperature": [15, 30],
+      "humidity": [20, 50]
+    },
+    "base_care": {
+      "water": "Sparingly; once every 2 weeks",
+      "sunlight": "Bright indirect to direct sun",
+      "soil": "Sucluent/Cactus mix"
+    },
+    "rules": {
+      "low_sunlight": "Plant may become 'leggy'; move to a brighter window.",
+      "wrong_soil": "Switch to a cactus mix to prevent root rot.",
+      "heavy_rain": "Move indoors or under cover to avoid waterlogging.",
+      "overwatering": "Reduce watering; Aloe stores water in its leaves."
+    }
+  },
+  "Mint": {
+    "scientific_name": "Mentha spicata",
+    "common_name": "Mint",
+    "medicinal_uses": [
+      "Aids digestion",
+      "Relieves headaches",
+      "Freshens breath",
+      "Anti-nausea properties"
+    ],
+    "ideal_conditions": {
+      "climate": ["temperate", "subtropical"],
+      "soil": ["loamy", "moist", "rich"],
+      "sunlight": ["partial", "full"],
+      "environment": ["indoor", "outdoor"]
+    },
+    "ideal_ranges": {
+      "temperature": [10, 25],
+      "humidity": [50, 80]
+    },
+    "base_care": {
+      "water": "High; keep soil moist",
+      "sunlight": "Partial shade",
+      "soil": "Rich loamy soil"
+    },
+    "rules": {
+      "low_sunlight": "Mint is shade-tolerant but needs some light for flavor.",
+      "wrong_soil": "Add compost to retain moisture and nutrients.",
+      "high_heat": "Keep in partial shade and increase watering; Mint wilts quickly.",
+      "indoor": "Mint grows well in pots on a windowsill with regular pruning."
+    }
+  },
+  "Amla": {
+    "scientific_name": "Phyllanthus emblica",
+    "common_name": "Indian Gooseberry",
+    "medicinal_uses": [
+      "Rich source of Vitamin C",
+      "Boosts immunity",
+      "Supports hair and skin health",
+      "Improves digestion"
+    ],
+    "ideal_conditions": {
+      "climate": ["tropical", "subtropical"],
+      "soil": ["loamy", "well-drained", "light"],
+      "sunlight": ["full"],
+      "environment": ["outdoor"]
+    },
+    "ideal_ranges": {
+      "temperature": [20, 40],
+      "humidity": [40, 70]
+    },
+    "base_care": {
+      "water": "Moderate",
+      "sunlight": "Full Sun",
+      "soil": "Well-drained loam"
+    },
+    "rules": {
+      "low_sunlight": "Amla needs bright sun for fruiting; avoid shaded areas.",
+      "wrong_soil": "Avoid heavy clay soil; ensure good drainage.",
+      "cold_climate": "Protect young plants from frost.",
+      "outdoor": "Amla is best suited for outdoor growing as it becomes a large tree."
+    }
+  },
+  "Ginger": {
+    "scientific_name": "Zingiber officinale",
+    "common_name": "Ginger",
+    "medicinal_uses": [
+      "Relieves nausea",
+      "Supports digestion",
+      "Anti-inflammatory",
+      "Eases cold symptoms"
+    ],
+    "ideal_conditions": {
+      "climate": ["tropical", "subtropical"],
+      "soil": ["rich", "loamy", "well-drained"],
+      "sunlight": ["partial"],
+      "environment": ["outdoor", "indoor"]
+    },
+    "ideal_ranges": {
+      "temperature": [20, 30],
+      "humidity": [70, 90]
+    },
+    "base_care": {
+      "water": "Moderate to High",
+      "sunlight": "Filtered sunlight / Partial shade",
+      "soil": "Rich, loose organic soil"
+    },
+    "rules": {
+      "low_sunlight": "Ginger thrives in dappled light; avoid deep shade or direct midday sun.",
+      "wrong_soil": "Needs loose soil to allow rhizomes to expand.",
+      "high_heat": "Mist frequently to maintain humidity.",
+      "low_humidity": "Place on a pebble tray if indoors to increase humidity."
+    }
+  },
+  "Rose": {
+    "scientific_name": "Rosa spp.",
+    "common_name": "Rose",
+    "medicinal_uses": [
+      "Supports skin health",
+      "Rich in antioxidants",
+      "Helps reduce stress",
+      "Mild anti-inflammatory"
+    ],
+    "ideal_conditions": {
+      "climate": ["temperate", "subtropical"],
+      "soil": ["fertile", "well-drained", "slightly acidic"],
+      "sunlight": ["full"],
+      "environment": ["outdoor"]
+    },
+    "ideal_ranges": {
+      "temperature": [15, 30],
+      "humidity": [50, 70]
+    },
+    "base_care": {
+      "water": "Moderate to High",
+      "sunlight": "Full sun (6+ hours)",
+      "soil": "Rich, well-fertilized soil"
+    },
+    "rules": {
+      "low_sunlight": "Poor blooming and risk of fungus; move to full sun.",
+      "wrong_soil": "Regularly add organic compost for nutrients.",
+      "high_heat": "Mulch the soil to keep roots cool.",
+      "indoor": "Requires very bright windows and good airflow to prevent pests."
+    }
+  },
+  "Lemon": {
+    "scientific_name": "Citrus limon",
+    "common_name": "Lemon",
+    "medicinal_uses": [
+      "Rich in vitamin C",
+      "Supports immunity",
+      "Aids digestion",
+      "Natural detox"
+    ],
+    "ideal_conditions": {
+      "climate": ["tropical", "subtropical", "mediterranean"],
+      "soil": ["loamy", "well-draining", "slightly acidic"],
+      "sunlight": ["full"],
+      "environment": ["outdoor"]
+    },
+    "ideal_ranges": {
+      "temperature": [15, 35],
+      "humidity": [40, 60]
+    },
+    "base_care": {
+      "water": "Regular; moist but not wet",
+      "sunlight": "Full Sun",
+      "soil": "Well-draining citrus mix"
+    },
+    "rules": {
+      "low_sunlight": "Leaves may turn yellow; needs direct sun.",
+      "wrong_soil": "Avoid 'wet feet'; ensure the pot has large drainage holes.",
+      "cold_climate": "Move indoors if temperatures drop below 10\u00b0C.",
+      "indoor": "Use a humidity tray and place near a south-facing window."
+    }
+  },
+  "Betel": {
+    "scientific_name": "Piper betle",
+    "common_name": "Betel Leaf",
+    "medicinal_uses": [
+      "Aids digestion",
+      "Natural mouth freshener",
+      "Relief from cough and asthma",
+      "Antiseptic properties"
+    ],
+    "ideal_conditions": {
+      "climate": ["tropical", "subtropical"],
+      "soil": ["rich", "loamy", "well-drained"],
+      "sunlight": ["partial"],
+      "environment": ["outdoor", "indoor"]
+    },
+    "ideal_ranges": {
+      "temperature": [15, 30],
+      "humidity": [60, 80]
+    },
+    "base_care": {
+      "water": "Regular; keep soil moist",
+      "sunlight": "Filtered shade",
+      "soil": "Rich organic loam"
+    },
+    "rules": {
+      "low_sunlight": "Betel likes shade; avoid direct harsh sun which burns leaves.",
+      "wrong_soil": "Needs high organic matter; add vermicompost.",
+      "dry_climate": "Mist leaves daily to maintain high humidity.",
+      "cold_climate": "Very sensitive to frost; keep indoors in winter."
+    }
+  }
+}
