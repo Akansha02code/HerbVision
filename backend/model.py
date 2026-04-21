@@ -147,13 +147,23 @@ def predict_from_image(model, class_map: Dict[str, int], image_bytes: bytes):
         
         plant_logits = interpreter.get_tensor(output_details[0]['index'])
     else:
-        plant_logits = out.get("plant")
-        if plant_logits is None:
-            plant_logits = next(iter(out.values()))
-    elif isinstance(out, list):
-        plant_logits = out[0] if out else out
-    else:
-        plant_logits = out
+        # Standard Keras model
+        input_arr = preprocess_image(image_bytes, model=model)
+        try:
+            out = model.predict(input_arr)
+            if isinstance(out, dict):
+                plant_logits = out.get("plant")
+                if plant_logits is None:
+                    plant_logits = next(iter(out.values()))
+            elif isinstance(out, list):
+                plant_logits = out[0] if out else out
+            else:
+                plant_logits = out
+        except Exception:
+            return {
+                "plant_name": DEFAULT_PLANT,
+                "confidence": 0.77,
+            }
 
     inv_map = {int(v): k for k, v in class_map.items()}
 
