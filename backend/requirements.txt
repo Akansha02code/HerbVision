@@ -11,3 +11,5 @@ requests>=2.31.0
 google-genai>=1.6.0
 groq>=1.1.2
 gunicorn==21.2.0
+tflite-runtime==2.14.0
+

@@ -9,7 +9,9 @@ from PIL import Image
 
 BASE_DIR = Path(__file__).resolve().parent
 MODELS_DIR = BASE_DIR / "models"
+# Model candidates: Use TFLite for production (Render) to avoid OOM
 MODEL_CANDIDATES = [
+    MODELS_DIR / "model.tflite",
     MODELS_DIR / "plant_health_model_top20.h5",
     MODELS_DIR / "plant_health_model.h5",
 ]
@@ -39,6 +41,26 @@ def load_class_map() -> Dict[str, int]:
 
 
 def load_model():
+    # Force use of TFLite if available (Highly recommended for Render 512MB RAM)
+    tflite_path = MODELS_DIR / "model.tflite"
+    if tflite_path.exists():
+        try:
+            # We use tflite_runtime (lighter) if available, else tensorflow
+            try:
+                import tflite_runtime.interpreter as tflite
+            except ImportError:
+                try:
+                    import tensorflow.lite as tflite
+                except ImportError:
+                    tflite = None
+            
+            if tflite:
+                interpreter = tflite.Interpreter(model_path=str(tflite_path))
+                interpreter.allocate_tensors()
+                return {"type": "tflite", "interpreter": interpreter}
+        except Exception as e:
+            print(f"Error loading TFLite model: {e}")
+
     try:
         import tensorflow as tf
         # Ensure any custom layers used during training are registered for deserialization.
@@ -111,16 +133,20 @@ def predict_from_image(model, class_map: Dict[str, int], image_bytes: bytes):
             "confidence": 0.77,
         }
 
-    input_arr = preprocess_image(image_bytes, model=model)
-    try:
-        out = model.predict(input_arr)
-    except Exception:
-        return {
-            "plant_name": DEFAULT_PLANT,
-            "confidence": 0.77,
-        }
-
-    if isinstance(out, dict):
+    # Handle TFLite (Ultra-low RAM mode)
+    if isinstance(model, dict) and model.get("type") == "tflite":
+        interpreter = model["interpreter"]
+        input_details = interpreter.get_input_details()
+        output_details = interpreter.get_output_details()
+        
+        input_shape = input_details[0]['shape']
+        input_arr = preprocess_image(image_bytes, target_size=(input_shape[1], input_shape[2]), model=model)
+        
+        interpreter.set_tensor(input_details[0]['index'], input_arr)
+        interpreter.invoke()
+        
+        plant_logits = interpreter.get_tensor(output_details[0]['index'])
+    else:
         plant_logits = out.get("plant")
         if plant_logits is None:
             plant_logits = next(iter(out.values()))
