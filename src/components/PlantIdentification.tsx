@@ -27,6 +27,57 @@ const PlantIdentification = () => {
   const [result, setResult] = useState(false);
   const [resultData, setResultData] = useState<PredictionResult | null>(null);
   const [analysisError, setAnalysisError] = useState<string | null>(null);
+  const [showCamera, setShowCamera] = useState(false);
+  const videoRef = useState<HTMLVideoElement | null>(null);
+
+  const startCamera = async () => {
+    try {
+      setShowCamera(true);
+      const stream = await navigator.mediaDevices.getUserMedia({ 
+        video: { facingMode: "environment" } 
+      });
+      const video = document.getElementById("camera-preview") as HTMLVideoElement;
+      if (video) {
+        video.srcObject = stream;
+        video.play();
+      }
+    } catch (err) {
+      console.error("Error accessing camera:", err);
+      setAnalysisError("Could not access camera. Please check permissions.");
+      setShowCamera(false);
+    }
+  };
+
+  const captureImage = () => {
+    const video = document.getElementById("camera-preview") as HTMLVideoElement;
+    const canvas = document.createElement("canvas");
+    if (video) {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const ctx = canvas.getContext("2d");
+      ctx?.drawImage(video, 0, 0);
+      
+      canvas.toBlob((blob) => {
+        if (blob) {
+          const fileUrl = URL.createObjectURL(blob);
+          setFile(fileUrl);
+          const imageFile = new File([blob], "camera-capture.jpg", { type: "image/jpeg" });
+          runAnalysis(imageFile);
+          stopCamera();
+        }
+      }, "image/jpeg");
+    }
+  };
+
+  const stopCamera = () => {
+    const video = document.getElementById("camera-preview") as HTMLVideoElement;
+    if (video && video.srcObject) {
+      const stream = video.srcObject as MediaStream;
+      stream.getTracks().forEach(track => track.stop());
+      video.srcObject = null;
+    }
+    setShowCamera(false);
+  };
 
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
@@ -140,9 +191,32 @@ const PlantIdentification = () => {
             <div
               onDrop={handleDrop}
               onDragOver={(e) => e.preventDefault()}
-              className="flex min-h-[300px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-primary/30 bg-primary/5 p-8 transition-colors hover:border-primary/50"
+              className="relative flex min-h-[300px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-primary/30 bg-primary/5 p-8 transition-colors hover:border-primary/50 overflow-hidden"
             >
-              {file ? (
+              {showCamera ? (
+                <div className="absolute inset-0 z-10 bg-black flex flex-col items-center justify-center">
+                  <video 
+                    id="camera-preview" 
+                    className="h-full w-full object-cover"
+                    autoPlay 
+                    playsInline
+                  />
+                  <div className="absolute bottom-4 flex gap-4">
+                    <button 
+                      onClick={captureImage}
+                      className="rounded-full bg-primary p-4 text-white hover:bg-primary/90 transition-colors"
+                    >
+                      <Camera className="h-6 w-6" />
+                    </button>
+                    <button 
+                      onClick={stopCamera}
+                      className="rounded-full bg-destructive p-4 text-white hover:bg-destructive/90 transition-colors"
+                    >
+                      <AlertTriangle className="h-6 w-6" />
+                    </button>
+                  </div>
+                </div>
+              ) : file ? (
                 <img src={file} alt="Uploaded plant" className="h-60 w-60 rounded-2xl object-cover" />
               ) : (
                 <>
@@ -151,7 +225,14 @@ const PlantIdentification = () => {
                   <p className="mt-1 text-xs text-muted-foreground">or click to browse</p>
                 </>
               )}
-              <input type="file" accept="image/*" className="absolute inset-0 cursor-pointer opacity-0" onChange={handleFileChange} style={{ position: "relative" }} />
+              {!showCamera && (
+                <input 
+                  type="file" 
+                  accept="image/*" 
+                  className="absolute inset-0 cursor-pointer opacity-0" 
+                  onChange={handleFileChange} 
+                />
+              )}
             </div>
             <div className="mt-4 flex gap-3">
               <label className="flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-xl border border-border bg-card py-3 text-sm font-medium text-foreground transition-colors hover:bg-secondary">
@@ -160,8 +241,8 @@ const PlantIdentification = () => {
                 <input type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
               </label>
               <button
-                onClick={() => { setFile(null); runAnalysis(); }}
-                className="flex flex-1 items-center justify-center gap-2 rounded-xl gradient-hero py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.02]"
+                onClick={startCamera}
+                className="flex flex-1 items-center justify-center gap-2 rounded-xl gradient-hero py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.02] disabled:opacity-50"
               >
                 <Camera className="h-4 w-4" />
                 Camera Scan
