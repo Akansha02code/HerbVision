@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from groq import Groq
 import os
@@ -133,8 +134,8 @@ def get_real_weather(location: str, climate: str):
 
 # --- ENDPOINTS ---
 
-@app.get("/")
-def root():
+@app.get("/api/health")
+def health():
     return {"message": "HerbalAI API is running", "model_loaded": plant_model is not None}
 
 @app.post("/predict", response_model=PredictResponse)
@@ -325,6 +326,12 @@ async def chat(req: ChatRequest):
             return {"reply": "Oops! Groq API key is missing or invalid. Check your .env file."}
         return {"reply": f"Groq AI currently unreachable: {err_str[:80]}..."}
 
+# Serve the frontend dist folder - must be at the VERY end
+dist_path = BASE_DIR.parent / "dist"
+if dist_path.exists():
+    app.mount("/", StaticFiles(directory=str(dist_path), html=True), name="static")
+
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("backend.main:app", host="0.0.0.0", port=8000, reload=True)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("backend.main:app", host="0.0.0.0", port=port, reload=False)
