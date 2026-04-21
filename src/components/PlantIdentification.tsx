@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Upload, Camera, Leaf, AlertTriangle, CheckCircle, Loader2, Sprout, Droplets, Sun } from "lucide-react";
 
-const apiUrl = import.meta.env.VITE_API_URL?.trim() || "http://localhost:8000";
+const apiUrl = import.meta.env.VITE_API_URL?.trim() || window.location.origin;
 const API_BASE_URL = apiUrl.endsWith("/") ? apiUrl.slice(0, -1) : apiUrl;
 
 interface PredictionResult {
