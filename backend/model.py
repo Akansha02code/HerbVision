@@ -12,6 +12,7 @@ MODELS_DIR = BASE_DIR / "models"
 # Model candidates: Use TFLite for production (Render) to avoid OOM
 MODEL_CANDIDATES = [
     MODELS_DIR / "model.tflite",
+    MODELS_DIR / "plant_identification_final.h5",
     MODELS_DIR / "plant_health_model_top20.h5",
     MODELS_DIR / "plant_health_model.h5",
 ]
@@ -99,35 +100,38 @@ def _model_has_built_in_preprocess(model) -> bool:
         layers = getattr(model, "layers", [])
         layer_names = {getattr(l, "name", "").lower() for l in layers}
         # EfficientNet usually handles its own scaling or expects [0, 255]
-        if any("efficientnet" in name for name in layer_names):
+        # MobileNet usually expects [-1, 1] via its own preprocess_input
+        if any(name in layer_names for name in {"efficientnet", "mobilenet"}):
             return True
         return any(name in layer_names for name in {"preprocess", "rescaling"})
     except Exception:
         return False
 
-
 def preprocess_image(image_bytes: bytes, target_size: Tuple[int, int] = (224, 224), model=None) -> np.ndarray:
     arr = _preprocess_raw(image_bytes=image_bytes, target_size=target_size)
+    if model is None:
+        return arr / 255.0
 
-    # If the model already contains a preprocessing layer, don't preprocess again.
-    if model is not None and _model_has_built_in_preprocess(model):
+    # Check for specific model architectures to apply correct preprocessing
+    # Standard Keras layers and nested models
+    layers = getattr(model, "layers", [])
+    layer_names = [getattr(l, "name", "").lower() for l in layers]
+    # Check inside nested functional models
+    for layer in layers:
+        if hasattr(layer, "layers"):
+            layer_names.extend([l.name.lower() for l in layer.layers])
+
+    import tensorflow as tf
+    if any("mobilenet" in name for name in layer_names):
+        # MobileNet uses [-1, 1] scaling
+        return tf.keras.applications.mobilenet_v2.preprocess_input(arr)
+        
+    if any("efficientnet" in name for name in layer_names) or _model_has_built_in_preprocess(model):
+        # EfficientNet or model with Rescaling layer expects [0, 255]
         return arr
 
-    preprocess_mode = (os.getenv("HERBALAI_PREPROCESS") or "auto").strip().lower()
-    if preprocess_mode in {"rescale", "rescale_0_1", "divide_255"}:
-        return arr / 255.0
-
-    # Keep preprocessing consistent with EfficientNet training (preprocess_input expects 0..255 float input).
-    try:
-        import tensorflow as tf
-
-        if preprocess_mode in {"efficientnet", "imagenet"}:
-            return tf.keras.applications.efficientnet.preprocess_input(arr)
-
-        # auto: prefer legacy rescale to preserve old models unless explicitly overridden
-        return arr / 255.0
-    except Exception:
-        return arr / 255.0
+    # Default fallback for custom architectures
+    return arr / 255.0
 
 
 def predict_from_image(model, class_map: Dict[str, int], image_bytes: bytes):
