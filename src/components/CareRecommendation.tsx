@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Droplets, Sun, Sprout, CheckCircle, Leaf, AlertTriangle } from "lucide-react";
 
-const _apiUrl = import.meta.env.VITE_API_URL?.trim() || window.location.origin;
+const _apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
 const API_BASE_URL = _apiUrl.endsWith("/") ? _apiUrl.slice(0, -1) : _apiUrl;
 
 const CareRecommendation = () => {
