@@ -96,7 +96,11 @@ def _preprocess_raw(image_bytes: bytes, target_size: Tuple[int, int] = (224, 224
 
 def _model_has_built_in_preprocess(model) -> bool:
     try:
-        layer_names = {getattr(l, "name", "") for l in getattr(model, "layers", [])}
+        layers = getattr(model, "layers", [])
+        layer_names = {getattr(l, "name", "").lower() for l in layers}
+        # EfficientNet usually handles its own scaling or expects [0, 255]
+        if any("efficientnet" in name for name in layer_names):
+            return True
         return any(name in layer_names for name in {"preprocess", "rescaling"})
     except Exception:
         return False
