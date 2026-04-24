@@ -1,0 +1,5 @@
+﻿True: Aloevera | Predicted: Aloevera (0.60)
+True: Betel | Predicted: Tulsi (0.36)
+True: Neem | Predicted: Aloevera (0.44)
+True: Papaya | Predicted: Aloevera (0.48)
+True: Tulsi | Predicted: Tulsi (0.33)

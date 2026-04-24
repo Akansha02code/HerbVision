@@ -85,5 +85,5 @@ model.fit(
 )
 
 # Save
-model.save(MODELS_DIR / "plant_health_model.h5")
+model.save(MODELS_DIR / "plant_identification_final.h5")
 print("SUBMISSION MODEL READY!")

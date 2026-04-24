@@ -1,0 +1,21 @@
+﻿Class Map in JSON: {'Aloevera': 0, 'Betel': 1, 'Neem': 2, 'Papaya': 3, 'Tulsi': 4}
+
+Image from folder: Aloevera
+Probabilities: [9.9996281e-01 2.3275017e-09 2.1146366e-08 3.6895595e-05 2.8532517e-07]
+Argmax Index: 0 -> Maps to: Aloevera
+
+Image from folder: Betel
+Probabilities: [7.9940756e-09 9.9997175e-01 2.8553950e-07 2.7096632e-08 2.8004446e-05]
+Argmax Index: 1 -> Maps to: Betel
+
+Image from folder: Neem
+Probabilities: [2.8270813e-07 5.6111645e-07 1.9464192e-08 9.9999893e-01 8.1539291e-08]
+Argmax Index: 3 -> Maps to: Papaya
+
+Image from folder: Papaya
+Probabilities: [3.8562010e-03 2.1897270e-03 8.9845948e-05 4.6365684e-01 5.3020746e-01]
+Argmax Index: 4 -> Maps to: Tulsi
+
+Image from folder: Tulsi
+Probabilities: [1.8892047e-07 2.7481517e-06 4.9026948e-08 1.8878269e-07 9.9999678e-01]
+Argmax Index: 4 -> Maps to: Tulsi

@@ -1,0 +1,6 @@
+﻿Testing Model: MobileNetV2
+True: Aloevera   | Predicted: Aloevera   (1.00)
+True: Betel      | Predicted: Betel      (0.98)
+True: Neem       | Predicted: Neem       (1.00)
+True: Papaya     | Predicted: Papaya     (0.95)
+True: Tulsi      | Predicted: Tulsi      (1.00)
