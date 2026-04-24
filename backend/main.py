@@ -6,7 +6,10 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from groq import Groq
 import os
-from model import load_class_map, load_model, predict_from_image
+try:
+    from .model import load_class_map, load_model, predict_from_image
+except (ImportError, ValueError):
+    from model import load_class_map, load_model, predict_from_image
 import random
 from dotenv import load_dotenv
 
