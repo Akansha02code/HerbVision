@@ -2,6 +2,9 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Droplets, Sun, Sprout, CheckCircle, Leaf, AlertTriangle } from "lucide-react";
 
+const _apiUrl = import.meta.env.VITE_API_URL?.trim() || window.location.origin;
+const API_BASE_URL = _apiUrl.endsWith("/") ? _apiUrl.slice(0, -1) : _apiUrl;
+
 const CareRecommendation = () => {
   const [formData, setFormData] = useState({
     plant: "Tulsi",
@@ -17,7 +20,7 @@ const CareRecommendation = () => {
   const generatePlan = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:8000/care-plan", {
+      const response = await fetch(`${API_BASE_URL}/care-plan`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

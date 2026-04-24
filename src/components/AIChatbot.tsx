@@ -4,6 +4,9 @@ import { MessageCircle, X, Send, Bot, User, Leaf } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
+const _apiUrl = import.meta.env.VITE_API_URL?.trim() || window.location.origin;
+const API_BASE_URL = _apiUrl.endsWith("/") ? _apiUrl.slice(0, -1) : _apiUrl;
+
 interface Message {
   role: "user" | "bot";
   text: string;
@@ -41,7 +44,7 @@ const ChatContent = () => {
     setIsTyping(true);
     
     try {
-      const response = await fetch("http://localhost:8000/chat", {
+      const response = await fetch(`${API_BASE_URL}/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text.trim() }),

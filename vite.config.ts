@@ -28,10 +28,14 @@ export default defineConfig(({ mode }) => ({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
-        name: 'Herbal AI Garden',
-        short_name: 'HerbalAI',
+        name: 'HerbVision – Smart Medicinal Plant Care',
+        short_name: 'HerbVision',
         description: 'Identify and care for medicinal plants using AI',
         theme_color: '#10b981',
+        background_color: '#0f172a',
+        display: 'standalone',
+        orientation: 'portrait',
+        start_url: '/',
         icons: [
           {
             src: 'pwa-192x192.png',
