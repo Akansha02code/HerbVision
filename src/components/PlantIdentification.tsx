@@ -18,7 +18,7 @@ interface PredictionResult {
 }
 
 const SUPPORTED_PLANTS = [
-  "Tulsi", "Neem", "Aloevera", "Mint", "Betel"
+  "Tulsi", "Neem", "Aloevera", "Papaya", "Betel"
 ] as const;
 
 const PlantIdentification = () => {

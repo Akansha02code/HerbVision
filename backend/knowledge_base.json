@@ -92,35 +92,35 @@
       "overwatering": "Reduce watering; Aloe stores water in its leaves."
     }
   },
-  "Mint": {
-    "scientific_name": "Mentha spicata",
-    "common_name": "Mint",
+  "Papaya": {
+    "scientific_name": "Carica papaya",
+    "common_name": "Papaya",
     "medicinal_uses": [
-      "Aids digestion",
-      "Relieves headaches",
-      "Freshens breath",
-      "Anti-nausea properties"
+      "Aids digestion (papain enzyme)",
+      "Supports skin wound healing",
+      "Boosts immunity",
+      "Anti-inflammatory properties"
     ],
     "ideal_conditions": {
-      "climate": ["temperate", "subtropical"],
-      "soil": ["loamy", "moist", "rich"],
-      "sunlight": ["partial", "full"],
-      "environment": ["indoor", "outdoor"]
+      "climate": ["tropical", "subtropical"],
+      "soil": ["loamy", "well-drained", "rich"],
+      "sunlight": ["full"],
+      "environment": ["outdoor"]
     },
     "ideal_ranges": {
-      "temperature": [10, 25],
-      "humidity": [50, 80]
+      "temperature": [20, 35],
+      "humidity": [60, 85]
     },
     "base_care": {
-      "water": "High; keep soil moist",
-      "sunlight": "Partial shade",
-      "soil": "Rich loamy soil"
+      "water": "High; keep soil consistently moist",
+      "sunlight": "Full Sun (6-8 hours)",
+      "soil": "Rich well-drained soil"
     },
     "rules": {
-      "low_sunlight": "Mint is shade-tolerant but needs some light for flavor.",
-      "wrong_soil": "Add compost to retain moisture and nutrients.",
-      "high_heat": "Keep in partial shade and increase watering; Mint wilts quickly.",
-      "indoor": "Mint grows well in pots on a windowsill with regular pruning."
+      "low_sunlight": "Papaya needs full sun; fruiting will be poor in shade.",
+      "wrong_soil": "Avoid waterlogging; Papaya is prone to root rot in heavy clay.",
+      "high_heat": "Mulch the base to keep roots cool and maintain moisture.",
+      "cold_climate": "Very sensitive to frost; protect or move to a warm spot."
     }
   },
   "Amla": {

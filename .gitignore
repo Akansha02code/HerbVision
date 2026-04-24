@@ -31,6 +31,7 @@ plantvillage dataset/
 *.jpeg
 
 # Environments
+.env
 .venv/
 backend/.venv/
 venv/
