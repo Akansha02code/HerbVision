@@ -4,8 +4,8 @@ import { MessageCircle, X, Send, Bot, User, Leaf } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-const _apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
-const API_BASE_URL = _apiUrl.endsWith("/") ? _apiUrl.slice(0, -1) : _apiUrl;
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
+const API_BASE_URL = apiUrl.endsWith("/") ? apiUrl.slice(0, -1) : apiUrl;
 
 interface Message {
   role: "user" | "bot";
