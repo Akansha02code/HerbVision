@@ -7,23 +7,29 @@ import { VitePWA } from 'vite-plugin-pwa';
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
-    host: "::",
-    port: 8080,
+    host: "127.0.0.1",
+    port: 8081,
     hmr: {
       overlay: false,
     },
     watch: {
+      usePolling: false,
       ignored: [
         "**/plantvillage dataset/**",
         "**/MedicinalLeafBD**/**",
         "**/backend/data/**",
         "**/temp_uploads/**",
+        "**/.venv/**",
+        "**/dist/**",
+        "**/node_modules/**",
+        "**/backend/models/**",
+        "**/*.log",
       ],
     },
   },
   plugins: [
     react(), 
-    mode === "development" && componentTagger(),
+    // mode === "development" && componentTagger(),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
